@@ -21,9 +21,50 @@ class Controller extends CI_Controller {
     }
     public function getData(Type $var = null)
     {
-        $data = $this->model->getData();
+        $data = $this->model->getData('siswa');
         echo json_encode($data);
         // print_r($data);   
+    }
+
+    public function tambah_data(Type $var = null)
+    {
+        $nis = $this->input->post('nis');
+        $nama = $this->input->post('nama');
+        $jenis_kelamin = $this->input->post('jenis_kelamin');
+        $telepon = $this->input->post('telepon');
+        $alamat = $this->input->post('alamat');
+
+        if ($nis=='') {
+            $result['pesan']='nis harus di isi';
+        }elseif($nama==''){
+            $result['pesan']='nama harus di isi';
+        }elseif ($jenis_kelamin=='') {
+            $result['pesan']='jenis_kelamin harus di isi';
+        }elseif ($telepon=='') {
+            $result['pesan']='telepon harus di isi';
+        }elseif ($alamat=='') {
+            $result['pesan']='alamat harus di isi';
+        }else {
+            $result['pesan']='';
+
+            $data =[
+                'nis' =>$nis,
+                'nama' =>$nama,
+                'jenis_kelamin' =>$jenis_kelamin,
+                'telepon' =>$telepon,
+                'alamat' =>$alamat,
+            ];
+            $data = $this->model->tambah_data($data);
+            echo json_encode($result);
+        }
+        
+    }
+    public function edit_data(Type $var = null)
+    {
+        $id_siswa = $this->input->post('id_siswa');
+        $data = $this->model->tampil_id_siswa($id_siswa);
+        echo json_encode($data);
+        
     }
 
 }

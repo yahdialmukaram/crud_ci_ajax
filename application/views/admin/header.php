@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Tables</title>
+    <title>Crud ci ajax</title>
 
     <!-- Bootstrap core CSS-->
     <link href="<?=base_url();?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,13 +23,16 @@
     <!-- Custom styles for this template-->
     <link href="<?=base_url();?>assets/css/sb-admin.css" rel="stylesheet">
 
+
+    <script src="<?=base_url();?>assets/vendor/jquery/jquery.min.js"></script>
+    
   </head>
 
   <body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand mr-1" href="index.html">Crud Ci Ajax</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
