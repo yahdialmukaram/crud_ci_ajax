@@ -104,12 +104,12 @@
 
  <!-- modal edit -->
  <!-- Button trigger modal -->
- <button type="button" class="btn btn-primary btn_edit" data-toggle="modal" data-target="#edit-data">
+ <button type="button" class="btn btn-primary btn_edit" data-toggle="modal" data-target="#edit_data">
    Edit Data Siswa
  </button>
  
  <!-- Modal -->
- <div class="modal fade" id="edit-data" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+ <div class="modal fade" id="edit_data" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
      <div class="modal-dialog" role="document">
          <div class="modal-content">
              <div class="modal-header">
@@ -149,7 +149,7 @@
             </div>
              <div class="modal-footer">
                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                 <button type="button" id ="btn-update" class="btn btn-primary">update</button>
+                 <button type="button" id ="btn_update" class="btn btn-primary">update</button>
              </div>
          </div>
      </div>
@@ -220,7 +220,7 @@
 
         });
     });
-
+// tampilan edit data
     $('#show_data').on('click','.btn_edit', function(){
         var id_siswa = $(this).attr('data-id');
         
@@ -231,7 +231,7 @@
             dataType: 'json',
             success: function(response){
                 console.log(response);
-                $('#edit-data').modal('show');
+                $('#edit_data').modal('show');
                 $('input[name="nis_edit"]').val(response[0].nis);
                 $('input[name="nama_edit"]').val(response[0].nama);
                 $('input[name="jenis_kelamin_edit"]').val(response[0].jenis_kelamin);
@@ -241,6 +241,32 @@
             }
 
         });
+    });
+    // update data
+    $('#btn_update').on('click', function(){
+        var nis = $('input[name="nis_edit"]').val();
+        var nama = $('input[name="nama_edit"]').val();
+        var jenis_kelamin = $('input[name="jenis_kelamin_edit"]').val();
+        var telepon = $('input[name="telepon_edit"]').val();
+        var alamat =    $('#alamat_edit').val();
+        $.ajax({
+            type: "POST",
+            url: "<?=base_url();?>controller/update_data",
+            data: {nis:nis,nama:nama,jenis_kelamin:jenis_kelamin,telepon:telepon,alamat:alamat},
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+            $('input[name="nis_edit"]').val('');
+            $('input[name="nama_edit"]').val('');
+            $('input[name="jenis_kelamin_edit"]').val('');
+            $('input[name="telepon_edit"]').val('');
+            $('#alamat_edit').val('');
+            $('#edit_data').modal('hide');
+            tampil_data();
+                
+            }
+        });
+
     });
 });
 

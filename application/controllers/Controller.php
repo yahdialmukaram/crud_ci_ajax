@@ -62,10 +62,27 @@ class Controller extends CI_Controller {
     public function edit_data(Type $var = null)
     {
         $id_siswa = $this->input->post('id_siswa');
-        $data = $this->model->tampil_id_siswa($id_siswa);
+        $data = $this->model->edit_data($id_siswa);
         echo json_encode($data);
-        
-    }
+     }
+
+     public function update_data(Type $var = null)
+     {
+        $nis = $this->input->post('nis');
+        $nama = $this->input->post('nama');
+        $jenis_kelamin = $this->input->post('jenis_kelamin');
+        $telepon = $this->input->post('telepon');
+        $alamat = $this->input->post('alamat');
+        $data =[
+            'nis' =>$nis,
+            'nama' =>$nama,
+            'jenis_kelamin' =>$jenis_kelamin,
+            'telepon' =>$telepon,
+            'alamat' =>$alamat,
+        ];
+        $data = $this->model->update_data($id_siswa,$data);
+        echo json_encode($data);
+     }
 
 }
 

@@ -6,7 +6,9 @@ class Model extends CI_Model {
 
     public function getData()
     {
-     return $this->db->get('siswa')->result();
+     $this->db->from('siswa');   // memanggi dari tabel siswa
+     $this->db->order_by('id_siswa', 'desc');  //me urutkan 
+     return $this->db->get()->result();
         
     }
     public function tambah_data($data)
@@ -14,10 +16,17 @@ class Model extends CI_Model {
         $this->db->insert('siswa', $data);
         
     }
-    public function tampil_id_siswa($id_siswa)
+    public function edit_data($id_siswa)
     {
         $this->db->where('id_siswa', $id_siswa);  //mencari id siswa
         return $this->db->get('siswa')->result();   //menampilkan tb ssiswa
+    }
+
+    public function update_data($id_siswa,$data)
+    {
+        $this->db->where('id_siswa', $id_siswa);
+        $this->db->update('siswa', $data);
+        
     }
 
 }
