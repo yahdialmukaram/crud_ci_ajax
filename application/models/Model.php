@@ -29,6 +29,14 @@ class Model extends CI_Model {
         
     }
 
+    public function hapus_data($id_siswa)
+    {
+        $this->db->where('id_siswa', $id_siswa);
+        $this->db->delete('siswa');
+        
+        
+    }
+
 }
 
 

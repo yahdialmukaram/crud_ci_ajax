@@ -155,6 +155,33 @@
          </div>
      </div>
  </div>
+ <!-- end modal edit -->
+
+ <!-- Button trigger modal -->
+ <button type="button" class="btn btn-primary btn_hapus" data-toggle="modal" data-target="#hapus_data">
+   hapus data
+ </button>
+ 
+ <!-- Modal -->
+ <div class="modal fade" id="hapus_data" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="hapus_data">hapus</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+             </div>
+             <div class="modal-body">Yakin Akan Hapus Data  ?
+				<input type="hidden" name="id" id="id">
+			</div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                 <button type="button" class="btn btn-danger" id="btn_hapus">Hapus</button>
+             </div>
+         </div>
+     </div>
+ </div>
 
 
 
@@ -270,6 +297,26 @@
                 
             }
         });
+
+    });
+
+    $('#show_data').on('click','.btn_hapus',function(){
+        var id_siswa = $(this).attr('data-id');
+        var status = confirm('yakin akan hapus data ini');
+        if (status) {
+            $.ajax({
+                type: "POST",
+                url: "<?=base_url();?>controller/hapus_data",
+                data: {id_siswa:id_siswa},
+                dataType: "json",
+                success: function (response) {
+                    tampil_data();
+                    
+                }
+            });
+            
+        }
+
 
     });
 });

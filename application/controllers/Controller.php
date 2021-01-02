@@ -86,6 +86,14 @@ class Controller extends CI_Controller {
         echo json_encode($data);
      }
 
+     public function hapus_data(Type $var = null)
+     {
+         $id_siswa = $this->input->post('id_siswa');
+         $data = $this->model->hapus_data($id_siswa);
+         echo json_encode($data);
+         
+     }
+
 }
 
 ?>
