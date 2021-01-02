@@ -72,7 +72,9 @@ class Controller extends CI_Controller {
         $nama = $this->input->post('nama');
         $jenis_kelamin = $this->input->post('jenis_kelamin');
         $telepon = $this->input->post('telepon');
-        $alamat = $this->input->post('alamat');
+		$alamat = $this->input->post('alamat');
+		$id_siswa=$this->input->post('id_siswa');
+		
         $data =[
             'nis' =>$nis,
             'nama' =>$nama,

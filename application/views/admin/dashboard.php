@@ -120,6 +120,7 @@
              </div>
              <div class="modal-body">
                 <form>
+				<input type="text" class="id_siswa" hidden >
                     <div class="form-group">
                         <label for="">Nis</label>
                         <input type="text" name="nis_edit" id="nis" class="form-control"></input>
@@ -232,6 +233,7 @@
             success: function(response){
                 console.log(response);
                 $('#edit_data').modal('show');
+				$(".id_siswa").val(id_siswa);
                 $('input[name="nis_edit"]').val(response[0].nis);
                 $('input[name="nama_edit"]').val(response[0].nama);
                 $('input[name="jenis_kelamin_edit"]').val(response[0].jenis_kelamin);
@@ -249,10 +251,12 @@
         var jenis_kelamin = $('input[name="jenis_kelamin_edit"]').val();
         var telepon = $('input[name="telepon_edit"]').val();
         var alamat =    $('#alamat_edit').val();
+		var id_siswa=$(".id_siswa").val();
+		console.log(id_siswa);
         $.ajax({
             type: "POST",
             url: "<?=base_url();?>controller/update_data",
-            data: {nis:nis,nama:nama,jenis_kelamin:jenis_kelamin,telepon:telepon,alamat:alamat},
+            data: {nis:nis,nama:nama,jenis_kelamin:jenis_kelamin,telepon:telepon,alamat:alamat,id_siswa:id_siswa},
             dataType: "json",
             success: function (response) {
                 console.log(response);
